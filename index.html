@@ -11,6 +11,32 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+<script>(function(){
+  if(!/github\.io$|pages\.dev$|netlify\.app$|vercel\.app$/.test(location.hostname)&&!/[?&]gate=1/.test(location.search))return;
+  var H='be8a26b741ad2a2dbfe39b83cd4fc0e03184c699e34d5ffac80eb058078a1944',K='abyss-gate';
+  try{if(localStorage.getItem(K)===H)return;}catch(e){}
+  var de=document.documentElement;de.classList.add('gated');
+  var st=document.createElement('style');st.textContent='html.gated body>*:not(#gate){visibility:hidden!important}#gate{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at top,#2a2140,#0d0b12 70%);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;color:#e4dcf1}#gate .gb{width:min(360px,86vw);text-align:center}#gate h1{margin:0 0 6px;font-size:34px;letter-spacing:4px;color:#f6e7c4;text-shadow:0 3px 0 #6b3d14}#gate p{margin:0 0 18px;color:#8f86a3;font-size:14px}#gate input{width:100%;box-sizing:border-box;padding:12px 14px;font-size:17px;border-radius:10px;border:1px solid #4a3f62;background:#17131f;color:#fff;outline:none;text-align:center}#gate input:focus{border-color:#f2c14e}#gate button{margin-top:12px;width:100%;padding:12px;font-size:17px;font-weight:700;border:0;border-radius:10px;background:linear-gradient(#f2c14e,#c88a2a);color:#2a1600;cursor:pointer}#gate .ge{min-height:20px;margin-top:10px;color:#ff8a8a;font-size:14px}#gate.shake .gb{animation:gsh .35s}@keyframes gsh{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-4px)}}';
+  document.head.appendChild(st);
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2);}).join('');}
+  function show(){
+    var g=document.createElement('div');g.id='gate';
+    g.innerHTML='<form class="gb"><h1>深渊回收者</h1><p>请输入密码</p><input type="password" autocomplete="current-password" autofocus><button type="submit">进入</button><div class="ge"></div></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'),inp=g.querySelector('input'),er=g.querySelector('.ge');
+    setTimeout(function(){inp.focus();},50);inp.addEventListener('keydown',function(e){e.stopPropagation();});
+    f.addEventListener('submit',function(e){e.preventDefault();
+      var v=(inp.value||'').trim();
+      if(!(window.crypto&&crypto.subtle)){er.textContent='浏览器不支持，请换 Chrome 或 Edge';return;}
+      crypto.subtle.digest('SHA-256',new TextEncoder().encode('abyss-gate:'+v)).then(function(b){
+        if(hex(b)===H){try{localStorage.setItem(K,H);}catch(x){}g.remove();de.classList.remove('gated');}
+        else{er.textContent='密码不对';g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');inp.select();}
+      });
+    });
+  }
+  if(document.body)show();else document.addEventListener('DOMContentLoaded',show);
+})();</script>
+
 <style>
 :root{--bg:#120f18;--panel:#1d1828;--panel2:#282137;--text:#ece6f5;--muted:#9a90ad;--gold:#f2c14e;--red:#e5484d;--blue:#4c8dff;--green:#46c37b;--purple:#a77bf3;--line:#3a3250;
 --q-c:#5fbf6a;--q-u:#4c8dff;--q-r:#a77bf3;--q-boss:#e8b03a;--q-legend:#ff4d4f;--q-start:#9a90ad}
